@@ -1,6 +1,5 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const chats = require("../mockData");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
@@ -18,10 +17,11 @@ app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
-// const  dirname = path.resolve();
-// if(process.env.NODE_ENV==="production"){
-
-// }
+/* Deploy */
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get("*", (req, res) => {
+  res.send(path.join(__dirname, "/frontend/build/index.html"));
+});
 
 app.use(notFound);
 app.use(errHandler);
