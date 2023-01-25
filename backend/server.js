@@ -18,10 +18,12 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
 /* Deploy */
-// app.use(express.static(path.join(__dirname, "/frontend/build")));
-// app.get("*", (req, res) => {
-//   res.send(path.join(__dirname, "/frontend/build/index.html"));
-// });
+const __dirnamee = path.resolve();
+app.use(express.static(path.join(__dirnamee, "/frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirnamee, "frontend", "build", "index.html"));
+});
 
 app.use(notFound);
 app.use(errHandler);
