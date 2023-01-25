@@ -14,7 +14,7 @@ import axios from "axios";
 import SnackBar from "./genericCompo/SnackBar";
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://chatapp-8dgp.onrender.com";
 // var socket, selectedChatCompare;
 var socket = io(ENDPOINT);
 var selectedChatCompare;
