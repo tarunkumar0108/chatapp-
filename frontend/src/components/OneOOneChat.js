@@ -15,7 +15,6 @@ import SnackBar from "./genericCompo/SnackBar";
 import io from "socket.io-client";
 
 const ENDPOINT = "https://chatapp-8dgp.onrender.com";
-// var socket, selectedChatCompare;
 var socket = io(ENDPOINT);
 var selectedChatCompare;
 console.log(socket, "socket from client>>>>>>>>>");
@@ -226,41 +225,6 @@ function OneOOneChat() {
               )}
             </Box>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              gap: "16px",
-              p: "8px 16px",
-              borderRadius: "4px",
-              background: "#2a6f97",
-            }}
-          >
-            <FormControl
-              variant="standard"
-              sx={{ width: "100%" }}
-              onKeyDown={sendMessage}
-              required
-            >
-              <MessageInput
-                id="bootstrap-input"
-                placeholder="Type message"
-                onChange={typeNewMessage}
-                value={newMessage}
-              />
-            </FormControl>
-            <Button
-              onClick={sendMessage}
-              size="small"
-              variant="contained"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <SendIcon />
-            </Button>
-          </Box>
         </>
       ) : (
         <Box
@@ -276,6 +240,42 @@ function OneOOneChat() {
           </Typography>
         </Box>
       )}
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          p: "8px 16px",
+          borderRadius: "4px",
+          background: "#2a6f97",
+        }}
+      >
+        <FormControl
+          variant="standard"
+          sx={{ width: "100%" }}
+          onKeyDown={selectedChat ? sendMessage : null}
+          required
+        >
+          <MessageInput
+            id="bootstrap-input"
+            placeholder="Type message"
+            onChange={typeNewMessage}
+            value={newMessage}
+          />
+        </FormControl>
+        <Button
+          disabled={selectedChat ? false : true}
+          onClick={sendMessage}
+          size="small"
+          variant="contained"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <SendIcon />
+        </Button>
+      </Box>
     </>
   );
 }

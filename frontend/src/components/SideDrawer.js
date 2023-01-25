@@ -41,9 +41,7 @@ function SideDrawer({ drawerOpen, setDrawerOpen }) {
       if (!chats.find((chat) => chat._id === data._id)) {
         setChats([data, ...chats]);
       }
-      //   setSelectedChat(data);
       setLoadingChat(false);
-      //   setDrawerOpen(false);
 
       console.log(data, "data from chat api");
     } catch (err) {

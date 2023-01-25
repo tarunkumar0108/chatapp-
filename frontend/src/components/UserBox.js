@@ -12,6 +12,7 @@ import {
   InputBase,
   Modal,
   Backdrop,
+  IconButton,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
@@ -73,6 +74,7 @@ function UserBox({ fetchAgain }) {
 
   const history = useHistory();
   console.log([loggedUser, selectedChat, chats, user], "logged user");
+  const loguser = JSON.parse(localStorage.getItem("userInfo"));
 
   const fetchChats = async (user) => {
     try {
@@ -149,7 +151,7 @@ function UserBox({ fetchAgain }) {
             p: "8px",
           }}
         >
-          <Avatar alt="Remy Sharp" src="#" />
+          <Avatar alt="" src={loguser.pic} />
           <Button variant="contained" size="small" onClick={handleOpen}>
             new room
           </Button>
@@ -161,7 +163,53 @@ function UserBox({ fetchAgain }) {
             style={{ color: "#f5f5f5" }}
           />
         </Paper>
-        {/* <HorizontalUserScroll /> */}
+        <Box
+          className={"roomContainer"}
+          sx={{
+            background: "#a9d6e5",
+            m: "8px 0px",
+            borderRadius: "4px",
+          }}
+        >
+          <Typography
+            variant="subtitle2"
+            textAlign="left"
+            sx={{ color: "#013a63", p: "4px 16px" }}
+          >
+            rooms
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              p: "16px 8px",
+              // gap: "8px",
+            }}
+          >
+            {chats ? (
+              <>
+                {chats.map((chat) => (
+                  <>
+                    {chat.isGroupChat ? (
+                      <IconButton size="small">
+                        <Avatar
+                          onClick={() => setSelectedChat(chat)}
+                          alt={chat.chatName.toUpperCase()}
+                          // src={user.pic}
+                          src="#"
+                          sx={{
+                            width: "32px",
+                            height: "32px",
+                          }}
+                        />
+                      </IconButton>
+                    ) : null}
+                  </>
+                ))}
+              </>
+            ) : null}
+          </Box>
+        </Box>
         <Box
           className={"usersContainer"}
           sx={{ color: "#f5f5f5", height: "70vh" }}
@@ -191,7 +239,10 @@ function UserBox({ fetchAgain }) {
                       alignItems: "center",
                     }}
                   >
-                    <Avatar alt="Remy Sharp" src="#" />
+                    <Avatar
+                      alt={chat.isGroupChat ? chat.chatName.toUpperCase() : ""}
+                      src="#"
+                    />
                     <Box>
                       <Typography>
                         {!chat.isGroupChat

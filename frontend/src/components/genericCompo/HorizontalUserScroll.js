@@ -13,13 +13,6 @@ function HorizontalUserScroll({ handleFunction, users }) {
         borderRadius: "4px",
       }}
     >
-      {/* <Typography
-        variant="subtitle2"
-        textAlign="left"
-        sx={{ color: "#013a63", p: "4px 16px" }}
-      >
-        rooms
-      </Typography> */}
       <Box
         sx={{
           display: "flex",

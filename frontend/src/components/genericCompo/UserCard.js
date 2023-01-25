@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Paper, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { Avatar, Box, Typography } from "@mui/material";
+import React from "react";
 
 function UserCard({ user, handleFunction }) {
   console.log(user, "user from user card");
@@ -12,7 +12,6 @@ function UserCard({ user, handleFunction }) {
         alignItems: "center",
         p: "8px",
         m: "8px 0",
-        // borderBottom: "1px solid #f5f5f5",
         background: "#013a63",
         borderRadius: "4px",
       }}
